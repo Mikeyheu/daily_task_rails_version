@@ -1,0 +1,26 @@
+<% if @tasks.size > 0 %>
+	<ul id="sortable">
+		<% @tasks.each do |task| %>
+			<% if task.complete %>
+				<li id="task_<%= task.id %>"> 
+					<%= link_to '<i class="icon complete"></i>'.html_safe, complete_task_path(task) %>
+					<span class="complete editable"><%= task.content %></span>
+					<%= link_to '<i class="delete_button"></i>'.html_safe, task, :method => :delete %> 
+				</li>
+				<% else %>
+					<li id="task_<%= task.id %>">
+						<%= link_to '<i class="icon"></i>'.html_safe, complete_task_path(task) %>
+					
+
+						<span class="editable"><%= task.content %></span>
+						<%= link_to '<i class="delete_button"></i>'.html_safe, task, :method => :delete %>
+					</li>
+
+						
+
+				<% end %>
+		<% end %>
+	</ul>
+<% else %>
+	<span class="grayText">You have no tasks listed.</span>
+<% end %>

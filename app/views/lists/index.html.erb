@@ -1,0 +1,31 @@
+<div class="container">
+
+	<div class="box">
+		<div id="header">
+			<h1>Task Master</h1>
+		</div>
+
+		<%= form_for(@list, :html => {:class => "addTask"} ) do |f| %>
+	    <%= f.text_field :name, :placeholder => "Enter a list name..." %>
+	    <%= f.submit 'New List', :class => 'btn btn-success task' %>
+		<% end %>
+
+		<div id="taskContainer">
+			<ul>
+				<% @lists.each do |list| %>
+
+				<li id="task_<%= list.id %>">
+					<span class="editable"><%= link_to list.name, list_path(list) %></span>
+					<%= link_to '<i class="delete_button"></i>'.html_safe, list, :method => :delete %>
+					
+				</li>
+
+				<% end %>
+
+
+			</ul>
+		</div>
+
+	</div>
+
+</div>

@@ -1,0 +1,27 @@
+<div class="container">
+
+	<div class="box">
+		<div id="header">
+			<h1>Task Master</h1>
+			<%= link_to '<i class="icon pencil"></i>'.html_safe, lists_path %>
+			<span class="list_drop">
+
+			<%= collection_select(:list, :id, @lists, :id, :name, {}, {:onchange => "document.location.href=$(this).val()"}) %>
+
+			</span>
+
+		</div>
+
+		<%= form_for(@task, :html => {:class => "addTask"} ) do |f| %>
+	    <%= f.text_field :content, :placeholder => "Add a task..." %>
+	    <%= f.hidden_field :list_id, :value => @list.id %>
+	    <%= f.submit 'Add Task', :class => 'btn btn-success task' %>
+		<% end %>
+
+		<div id="taskContainer" class=>
+			<%= render 'tasks' %>
+		</div>
+
+	</div>
+
+</div>
